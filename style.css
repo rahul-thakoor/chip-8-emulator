@@ -1,0 +1,81 @@
+@font-face {
+    font-family: "Pixel LCD 7";
+    src: url(/pixel_lcd7/Pixel_LCD-7.ttf);
+}
+
+body {
+            font-family: "Pixel LCD 7";
+            margin: 50px;
+            background-color: beige;
+        }
+        
+#screen {
+            background: #000;
+            margin : auto;
+            margin-right: 50px;
+            margin-left: 0.1vw; /* 0.1% of viewport width*/
+            border-bottom: 5vh;
+
+        }
+#screen{
+    width: 60vw; /* 60% of viewport width */
+    height: 30vw; /* ratio = 32/64 * 60 = 30 */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+    max-height: 320px;
+    min-height: 225.5px;
+    min-width: 338.25px;
+    max-width: 640px; 
+    border: 5px solid darkred;
+}
+
+#registerTable {
+    font-family: monospace;
+    width:  8.2283172721vw;
+    max-width: 100px;
+    margin-right: 1.39vw;
+}
+
+#memoryTable {
+    font-family: monospace;
+    width: 8.2283172721vw;
+    max-width: 100px;
+    margin-right:1.39vw;
+}
+
+#emulator {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 2px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+#Tables{
+    display: flex;
+    justify-content: flex-start;
+    padding-top:5px;
+
+}
+
+#no-data{
+    display: none;
+    font-family: monospace;
+    color: red;
+}
+
+#saved-data, #prompt-saved{
+    display: none;
+    font-family: monospace;
+    color: blue;
+}
+
+#modal-memory{
+    font-family: monospace;
+  
+}

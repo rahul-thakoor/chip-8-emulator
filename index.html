@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CHIP-8 Emulator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            Select a file:
+            <input type="file" id="fileInput" class="btn btn-md">
+        </div>
+    </div>
+    <br>
+    <div class="container" id ="buttons">
+        <button type="button" id ="run" class="btn btn-success btn-md">Run</button>
+        <button type="button" id ="stop" class="btn btn-danger btn-md">Stop</button>
+        <button type="button" id ="step" class="btn btn-md">Step</button>
+        <button type="button" id="save" class="btn btn-md btn-info">Save</button>
+        <button type="button" id="load" class="btn btn-md btn-warning">Load</button>
+        <span id="prompt-saved">Saved</span>
+         <span id="no-data">No Saved Data</span>
+         <span id="saved-data"></span>
+        <button type="button" id="memory" class="btn btn-md btn-default">Memory</button>
+        
+    </div>
+    <div id="emulator">
+        <canvas id="screen" width="640" height="320"></canvas>
+        <div id = "Tables">
+            <div id="registerContainer">
+                <table id="registerTable" class="table table-bordered table-striped table-responsive">
+                    <tr id="rowheader">
+                        <th id="header1">Register</th>
+                        <th id="header2">Value</th> 
+                    </tr>
+                    <tr id="row0">
+                        <td id="row0col1">V0</td>
+                        <td id="row0col2">#00</td> 
+                    </tr>
+                    <tr id="row1">
+                        <td id="row1col1">V1</td>
+                        <td id="row1col2">#00</td> 
+                    </tr>
+                    <tr id="row2">
+                        <td id="row2col1">V2</td>
+                        <td id="row2col2">#00</td> 
+                    </tr>
+                    <tr id="row3">
+                        <td id="row3col1">V3</td>
+                        <td id="row3col2">#00</td> 
+                    </tr>
+                    <tr id="row4">
+                        <td id="row4col1">V4</td>
+                        <td id="row4col2">#00</td> 
+                    </tr>
+                    <tr id="row5">
+                        <td id="row5col1">V5</td>
+                        <td id="row5col2">#00</td> 
+                    </tr>
+                    <tr id="row6">
+                        <td id="row6col1">V6</td>
+                        <td id="row6col2">#00</td> 
+                    </tr>
+                    <tr id="row7">
+                        <td id="row7col1">V7</td>
+                        <td id="row7col2">#00</td> 
+                    </tr>
+                    <tr id="row8">
+                        <td id="row8col1">V8</td>
+                        <td id="row8col2">#00</td> 
+                    </tr>
+                    <tr id="row9">
+                        <td id="row9col1">V9</td>
+                        <td id="row9col2">#00</td> 
+                    </tr>
+                    <tr id="row10">
+                        <td id="row10col1">VA</td>
+                        <td id="row10col2">#00</td> 
+                    </tr>
+                    <tr id="row11">
+                        <td id="row11col1">VB</td>
+                        <td id="row11col2">#00</td> 
+                    </tr>
+                    <tr id="row12">
+                        <td id="row12col1">VC</td>
+                        <td id="row12col2">#00</td> 
+                    </tr>
+                    <tr id="row13">
+                        <td id="row13col1">VD</td>
+                        <td id="row13col2">#00</td> 
+                    </tr>
+                    <tr id="row14">
+                        <td id="row14col1">VE</td>
+                        <td id="row14col2">#00</td> 
+                    </tr>
+                    <tr id="row15">
+                        <td id="row15col1">VF</td>
+                        <td id="row15col2">#00</td> 
+                    </tr>
+                </table>
+            </div>
+            <div id="memoryContainer">
+                <table id="memoryTable" class="table table-bordered table-responsive">
+                    <tr id="mrowheader">
+                        <th id="mheader1">Memory</th> 
+                        <th id="mheader2">content</th> 
+                    </tr>
+                    <tr id="mrow1">
+                        <td id="krow1">019A -</td>
+                        <td id="krow2" >#00</td>
+                    </tr>
+                    <tr id="mrow2">
+                        <td id="mrow2col1">019B -</td>
+                        <td id="mrow2col2" >#00</td>
+                    </tr>
+                    <tr id="mrow3">
+                        <td id="mrow3col1">019C -</td>
+                        <td id="mrow3col2" >#00</td>
+                    </tr>
+                    <tr id="mrow4">
+                        <td id="mrow4col1">019D -</td>
+                        <td id="mrow4col2" >#00</td>
+                    </tr>
+                    <tr id="mrow5">
+                        <td id="mrow5col1">019E -</td>
+                        <td id="mrow5col2" >#00</td>
+                    </tr>
+                    <tr id="mrow6" class="danger">
+                        <td id="mrow6col1">0400 -</td>
+                        <td id="mrow6col2" >#00</td>
+                    </tr>
+                    <tr id="mrow7">
+                        <td id="mrow7col1">0201 -</td>
+                        <td id="mrow7col2" >#00</td>
+                    </tr>
+                    <tr id="mrow8">
+                        <td id="mrow8col1">0202 -</td>
+                        <td id="mrow8col2" >#00</td>
+                    </tr>
+                    <tr id="mrow9">
+                        <td id="mrow9col1">0203 -</td>
+                        <td id="mrow9col2" >#00</td>
+                    </tr>
+                    <tr id="mrow10">
+                        <td id="mrow10col1">0204 -</td>
+                        <td id="mrow10col2" >#00</td>
+                    </tr>
+                    <tr id="mrow11">
+                        <td id="mrow11col1">0205 -</td>
+                        <td id="mrow11col2" >#00</td>
+                    </tr>
+                </table>
+            </div>
+            
+        
+        </div>
+
+    </div>
+
+     <!-- Modal View Memory-->
+    <div id="modal-memory" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Memory</h4>
+                </div>
+                <div class="modal-body">
+                    <button class="btn-info" id="modal-memory-ok">Ok</button></br>
+                    <p id="memory-view"></p>
+                    
+                    
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    
+    
+     
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/fileLoader.js"></script>
+<script src="scripts/loadSave.js"></script>
+<script src="scripts/bootstrap.js"></script>
+
+</body>
+</html>
